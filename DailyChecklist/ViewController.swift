@@ -97,6 +97,29 @@ class ViewController: UIViewController {
         }
     }
     
+    private func getSavedObjects() {
+        do {
+            let savedList = try ListPersistance.manager.getList()
+            list = savedList
+        } catch {
+            print("getSavedObjectsError: \(error.localizedDescription)")
+        }
+    }
+    private func save(_ item: String) {
+        do {
+            try ListPersistance.manager.save(new: item)
+        } catch {
+            print("saveError: \(error.localizedDescription)")
+        }
+    }
+    private func delete(_ index: Int) {
+        do {
+            try ListPersistance.manager.delete(index: index)
+        } catch {
+            print("deleteError: \(error.localizedDescription)")
+        }
+    }
+    
 
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -104,6 +127,7 @@ class ViewController: UIViewController {
         setDelegates()
         allConstraints()
         setButtonActions()
+        getSavedObjects()
     }
     override func viewWillAppear(_ animated: Bool) {
         listTableView.reloadData()
@@ -132,6 +156,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         switch editingStyle {
         case .delete:
             list.remove(at: indexPath.row)
+            delete(indexPath.row)
             listTableView.deleteRows(at: [indexPath], with: .fade)
         default:
             print("default")
@@ -145,6 +170,7 @@ extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text, !text.isEmpty {
             list.append(text)
+            save(text)
             textField.text = ""
         }
         return true
