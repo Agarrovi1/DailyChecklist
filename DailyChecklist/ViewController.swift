@@ -79,6 +79,23 @@ class ViewController: UIViewController {
         listTableView.dataSource = self
         textBox.delegate = self
     }
+    private func setButtonActions() {
+        editButton.addTarget(self, action: #selector(editButtonPressed), for: .touchUpInside)
+    }
+    
+    //MARK: - Functions
+    @objc private func editButtonPressed() {
+        if listTableView.isEditing {
+            listTableView.isEditing = false
+            editButton.setTitle("Edit", for: .normal)
+            textBox.isEnabled = true
+        } else {
+            listTableView.isEditing = true
+            editButton.setTitle("Done", for: .normal)
+            textBox.isEnabled = false
+            
+        }
+    }
     
 
     //MARK: - LifeCycle
@@ -86,6 +103,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setDelegates()
         allConstraints()
+        setButtonActions()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        listTableView.reloadData()
     }
 
 
