@@ -16,6 +16,7 @@
 		4D7EAF662537401000DB33F4 /* DailyChecklistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7EAF652537401000DB33F4 /* DailyChecklistTests.swift */; };
 		4D7EAF71253743BE00DB33F4 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7EAF70253743BE00DB33F4 /* ListCell.swift */; };
 		4D7EAF7325374B6900DB33F4 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7EAF7225374B6900DB33F4 /* PersistenceHelper.swift */; };
+		4D7EAF7525374BB200DB33F4 /* ListPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7EAF7425374BB200DB33F4 /* ListPersistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		4D7EAF672537401000DB33F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D7EAF70253743BE00DB33F4 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		4D7EAF7225374B6900DB33F4 /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
+		4D7EAF7425374BB200DB33F4 /* ListPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPersistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				4D7EAF502537400A00DB33F4 /* SceneDelegate.swift */,
 				4D7EAF522537400A00DB33F4 /* ViewController.swift */,
 				4D7EAF7225374B6900DB33F4 /* PersistenceHelper.swift */,
+				4D7EAF7425374BB200DB33F4 /* ListPersistence.swift */,
 				4D7EAF70253743BE00DB33F4 /* ListCell.swift */,
 				4D7EAF542537400A00DB33F4 /* Main.storyboard */,
 				4D7EAF572537401000DB33F4 /* Assets.xcassets */,
@@ -211,6 +214,7 @@
 				4D7EAF4F2537400A00DB33F4 /* AppDelegate.swift in Sources */,
 				4D7EAF7325374B6900DB33F4 /* PersistenceHelper.swift in Sources */,
 				4D7EAF512537400A00DB33F4 /* SceneDelegate.swift in Sources */,
+				4D7EAF7525374BB200DB33F4 /* ListPersistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
