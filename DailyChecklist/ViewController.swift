@@ -29,6 +29,15 @@ class ViewController: UIViewController {
         return button
     }()
     
+    //MARK: - Properties
+    var list = [String]() {
+        didSet {
+            if !listTableView.isEditing {
+                listTableView.reloadData()
+            }
+        }
+    }
+    
     //MARK: - Constraints
     private func allConstraints() {
         editButtonConstraints()
@@ -63,13 +72,60 @@ class ViewController: UIViewController {
             listTableView.widthAnchor.constraint(equalTo: textBox.widthAnchor),
             listTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
+    
+    //MARK: - Setup
+    private func setDelegates() {
+        listTableView.delegate = self
+        listTableView.dataSource = self
+        textBox.delegate = self
+    }
+    
 
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setDelegates()
         allConstraints()
     }
 
 
 }
 
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell") as? ListCell else {
+            return UITableViewCell()
+        }
+        let item = list[indexPath.row]
+        cell.listLabel.text = item
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        65
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            list.remove(at: indexPath.row)
+            listTableView.deleteRows(at: [indexPath], with: .fade)
+        default:
+            print("default")
+        }
+    }
+    
+    
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = textField.text, !text.isEmpty {
+            list.append(text)
+            textField.text = ""
+        }
+        return true
+    }
+}
