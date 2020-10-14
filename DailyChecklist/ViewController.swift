@@ -28,11 +28,46 @@ class ViewController: UIViewController {
         button.setTitleColor(.blue, for: .normal)
         return button
     }()
+    
+    //MARK: - Constraints
+    private func allConstraints() {
+        editButtonConstraints()
+        textBoxConstraints()
+        tableViewConstraints()
+    }
+    
+    private func textBoxConstraints() {
+        view.addSubview(textBox)
+        textBox.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            textBox.topAnchor.constraint(equalTo: editButton.bottomAnchor),
+            textBox.widthAnchor.constraint(equalTo: view.widthAnchor),
+            textBox.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)])
+    }
+    private func editButtonConstraints() {
+        view.addSubview(editButton)
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            editButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            editButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            editButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.15),
+            editButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
+            ])
+    }
+    
+    private func tableViewConstraints() {
+        view.addSubview(listTableView)
+        listTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            listTableView.topAnchor.constraint(equalTo: textBox.bottomAnchor),
+            listTableView.widthAnchor.constraint(equalTo: textBox.widthAnchor),
+            listTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
+    }
 
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        allConstraints()
     }
 
 
